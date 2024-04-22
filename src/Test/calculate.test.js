@@ -36,8 +36,8 @@ describe("Calculator", () => {
 
   test("clear display", () => {
     render(<Calculator />);
-    fireEvent.click(screen.getByText("1"));
-    fireEvent.click(screen.getByText("C"));
+    fireEvent.click(screen.getByRole("button", { name: "1" }));
+    fireEvent.click(screen.getByRole("button", { name: "AC" }));
     const display = screen.getByTestId("display");
     expect(display.textContent).toBe("0");
   });
