@@ -23,6 +23,13 @@ export default function useCalculator() {
     setDisplayValue("0");
   };
 
+  const performOperation = {
+    "/": (prevOperand, nextOperand) => prevOperand / nextOperand,
+    "*": (prevOperand, nextOperand) => prevOperand * nextOperand,
+    "+": (prevOperand, nextOperand) => prevOperand + nextOperand,
+    "-": (prevOperand, nextOperand) => prevOperand - nextOperand,
+  };
+
   const inputOperator = (nextOperator) => {
     const nextOperand = parseFloat(displayValue);
 
@@ -36,16 +43,10 @@ export default function useCalculator() {
       setDisplayValue(String(newValue));
     }
 
-    setOperator(nextOperator);
-    setDisplayValue("0");
-  };
-
-  const performOperation = {
-    "/": (prevOperand, nextOperand) => prevOperand / nextOperand,
-    "*": (prevOperand, nextOperand) => prevOperand * nextOperand,
-    "+": (prevOperand, nextOperand) => prevOperand + nextOperand,
-    "-": (prevOperand, nextOperand) => prevOperand - nextOperand,
-    "=": (prevOperand, nextOperand) => nextOperand,
+    if (nextOperator !== "=") {
+      setOperator(nextOperator);
+      setDisplayValue("0");
+    }
   };
 
   return {
