@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+
 const Quote = () => {
   const [quote, setQuote] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -31,10 +34,10 @@ const Quote = () => {
   }, []);
 
   if (isLoading) {
-    return <p className="text-center text-blue-500 text-xl">Loading...</p>;
+    return <Loading />;
   }
   if (error) {
-    return <p className="text-center text-red-500 text-xl">{error}</p>;
+    return <Error message={error} />;
   }
   return (
     <div className="p-4 bg-blue-100 rounded shadow-md mt-4 w-[90%] mx-auto">
